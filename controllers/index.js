@@ -44,3 +44,19 @@ exports.getPortfolio = function (req, res) {
     res.send(response);
   });
 };
+
+exports.getTicker = function (req, res) {
+  new Promise((resolve, reject) => {
+    binance.prices(function (ticker) {
+      resolve(ticker);
+    });
+  }).then(function (ticker) {
+    let symbol =  req.param('symbol') && req.param('symbol').toUpperCase();
+    
+
+    let response = {};
+    response[symbol] = ticker[symbol];
+
+    res.json(response);
+  });
+};
