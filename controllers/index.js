@@ -51,10 +51,7 @@ exports.getTicker = function (req, res) {
       resolve(ticker);
     });
   }).then(function (ticker) {
-    let symbol =  req.params['symbol'] && req.params['symbol'].toUpperCase();
-    let response = {};
-    response.symbol = symbol;
-    response.value = ticker[symbol];
-    res.json(response);
+    //let symbol =  req.params['symbol'] && req.params['symbol'].toUpperCase();
+    res.json(ticker);
   });
 };
